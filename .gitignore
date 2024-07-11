@@ -1,0 +1,5 @@
+myvenv/
+quiz/migrations/
+.env
+flagquiz/__pycache__/
+quiz/__pycache__/

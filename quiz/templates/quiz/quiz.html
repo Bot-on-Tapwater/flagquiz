@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Flag Quiz</title>
+    <script>
+        let timer = 5;
+        const countdown = setInterval(() => {
+            timer--;
+            document.getElementById('timer').innerText = timer;
+            if (timer <= 0) {
+                clearInterval(countdown);
+                document.forms['quizForm'].submit();
+            }
+        }, 1000);
+    </script>
+</head>
+<body>
+    <h1>Guess the Flag</h1>
+    <img src="{{ question.flag_url }}" alt="Flag">
+    <div id="timer">5</div>
+    <form id="quizForm" method="post" action="{% url 'answer' %}">
+        {% csrf_token %}
+        {% for choice in choices %}
+            <button type="submit" name="choice" value="{{ choice.name }}">{{ choice.name }}</button>
+        {% endfor %}
+        <input type="hidden" name="correct" value="{{ question.name }}">
+    </form>
+</body>
+</html>
