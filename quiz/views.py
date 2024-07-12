@@ -16,9 +16,9 @@ def quiz(request):
     questions = []
 
     for country in countries:
-        choices = random.sample(countries, 3)
+        choices = random.sample(countries, 4)
         if country not in choices:
-            choices[random.randint(0, 2)] = country
+            choices[random.randint(0, 3)] = country
         random.shuffle(choices)
         question = {
             'question': {"answer": country.name, "flag_url": country.flag_url},
