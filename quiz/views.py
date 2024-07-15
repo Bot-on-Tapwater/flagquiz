@@ -44,17 +44,22 @@ def quiz(request):
 #     return redirect('quiz')
 @csrf_exempt
 def create_score(request):
-    username = request.POST.get('username')
-    score = request.POST.get('score')
-    # UserScore.objects.create(username=username, score=score)
+    try:
+        username = request.POST.get('username')
+        score = request.POST.get('score')
+        # UserScore.objects.create(username=username, score=score)
 
-    # Create an instance of the UserScore model
-    user_score = UserScore(username=username, score=score)
+        # Create an instance of the UserScore model
+        user_score = UserScore(username=username, score=score)
 
-    # Save the instance to the database
-    user_score.save()
+        # Save the instance to the database
+        user_score.save()
 
-    return JsonResponse(user_score.to_dict())
+        return JsonResponse(user_score.to_dict())
+    
+    except Exception as e:
+        print(e)
+        return {"error": str(e)}
 
 def results(request):
     try:
