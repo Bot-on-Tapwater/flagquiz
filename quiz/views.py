@@ -47,6 +47,8 @@ def create_score(request):
     try:
         username = request.POST.get('username')
         score = request.POST.get('score')
+
+        print(username, score)
         # UserScore.objects.create(username=username, score=score)
 
         # Create an instance of the UserScore model
